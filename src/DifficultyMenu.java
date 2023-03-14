@@ -11,63 +11,57 @@ public class DifficultyMenu extends JFrame {
     DifficultyMenu() {
         super("Snake Game");
         JLabel imageLabel= new JLabel();
-        ImageIcon snakeImage= new ImageIcon("draftsd.gif");
+        ImageIcon snakeImage= new ImageIcon("try.gif");
         imageLabel.setIcon(snakeImage);
         this.add(imageLabel);
 
         JButton easyButton = new JButton();
-        ImageIcon easyB = new ImageIcon("easybutton.png");
+        ImageIcon easyB = new ImageIcon("easy.png");
         easyButton.setIcon(easyB);
         easyButton.setBounds(430, 170, 230, 49 );
-        //2,north south 3,width 4,height
-        imageLabel.add(easyButton);
-
+        //1-left right 2-north south 3-width 4-height
         EventHandler easyHandler = new EventHandler(200);
         easyButton.addActionListener(easyHandler);
        
 
-        JButton mediumButton = new JButton();
-        ImageIcon medB = new ImageIcon ("normalbutton.png");
-        mediumButton.setIcon(medB);
-        mediumButton.setBounds(430, 250, 230, 49 );
-        EventHandler mediumHandler = new EventHandler(100);
-        mediumButton.addActionListener(mediumHandler);
+        JButton normalButton = new JButton();
+        ImageIcon medB = new ImageIcon ("normal.png");
+        normalButton.setIcon(medB);
+        normalButton.setBounds(430, 250, 230, 49 );
+        EventHandler normalHandler = new EventHandler(100);
+        normalButton.addActionListener(normalHandler);
 
 
         JButton hardButton = new JButton();
-        hardButton.setText("Hard");
-        hardButton.setForeground(Color.WHITE);
-        hardButton.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        hardButton.setBackground(new Color(128,70,116));
+        ImageIcon hardB = new ImageIcon("hard.png");
+        hardButton.setIcon(hardB);
+        hardButton.setBounds(430, 330, 230, 49);
         EventHandler hardHandler = new EventHandler(50);
         hardButton.addActionListener(hardHandler);
 
         JButton expertButton= new JButton();
-        expertButton.setText("Expert");
-        expertButton.setForeground(Color.WHITE);
-        expertButton.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        expertButton.setBackground(new Color(128,70,116));
+        ImageIcon expertB = new ImageIcon("expert.png");
+        expertButton.setIcon(expertB);
+        expertButton.setBounds(430, 410, 230, 49);
         EventHandler handler3 = new EventHandler(40);
         expertButton.addActionListener(handler3);
         
         
 
         JButton godmodeButton= new JButton();
-        godmodeButton.setText("God Mode");
-        godmodeButton.setForeground(Color.WHITE);
-        godmodeButton.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        godmodeButton.setBackground(new Color(128,70,116));
+        ImageIcon godB = new ImageIcon("god.png");
+        godmodeButton.setIcon(godB);
+        godmodeButton.setBounds(430, 490, 230, 49);
+
         EventHandler handler4= new EventHandler(10);
         godmodeButton.addActionListener(handler4);
         
-        
-        imageLabel.add(mediumButton);
-        // add(easyButton);
-        // System.out.println("    \n");
-        // add(mediumButton);
-        // add(hardButton);
-        // add(expertButton);
-        // add(godmodeButton);
+        imageLabel.add(easyButton);
+        imageLabel.add(normalButton);
+        imageLabel.add(hardButton);
+        imageLabel.add(expertButton);
+        imageLabel.add(godmodeButton);
+
 
         
         this.setLayout(new FlowLayout());
