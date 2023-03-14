@@ -1,4 +1,3 @@
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,61 +17,39 @@ public class TryAgain extends JFrame{
         lb.setText("Score:");
         
 
-        JLabel label = new JLabel();
-        label.setText("VOVO KA BEH ULIT SNAKE NALANG YAN");
-        label.setForeground(Color.BLACK);
-        label.setFont(new Font("Times New Roman", Font.BOLD, 25));
-        label.setHorizontalTextPosition(JLabel.CENTER);
-        label.setVerticalTextPosition(JLabel.CENTER);
-        this.add(label);
-
-         
-        JLabel imageLabel= new JLabel();
-        ImageIcon snakeImage= new ImageIcon("");
-        imageLabel.setIcon(snakeImage);
+        JLabel imageLabel = new JLabel();
+        ImageIcon gameOverIcon = new ImageIcon("game over.gif");
+        imageLabel.setIcon(gameOverIcon);
         this.add(imageLabel);
-        
+
         JButton tryAgainButton = new JButton();
-        tryAgainButton.setText("Try Again");
-        tryAgainButton.setBackground(new Color(128,70,116));
-        tryAgainButton.setFont(new Font("Times New Roman", Font.BOLD, 25));
-        
+        ImageIcon tryAgainB = new ImageIcon("tryagain.png");
+        tryAgainButton.setIcon(tryAgainB);
+        tryAgainButton.setBounds(425, 380, 260, 57 );
         EventHandler handler= new EventHandler();
         tryAgainButton.addActionListener(handler);
 
-       // Add button to frame
-        this.add(tryAgainButton);
-        
-        
-        // gbc.gridx=0;
-        // gbc.gridy=0;
-      //  tryAgainButton.setMargin(getInsets());
-        
-        // Add button to frame
-        
-        JButton exitButton = new JButton();
-        exitButton.setText("Exit");
-        exitButton.setBackground(new Color(128,70,116));
-        exitButton.setFont(new Font("Times New Roman", Font.BOLD, 25));
 
+        JButton exitButton = new JButton();
+        ImageIcon exitB = new ImageIcon("exitblue.png");
+        exitButton.setIcon(exitB);
+        exitButton.setBounds(425, 460, 260, 57 );
         EventHandler1 handler1= new EventHandler1();
         exitButton.addActionListener(handler1);
 
-       // Add button to frame
-        this.add(tryAgainButton);
-        this.add(exitButton);
-
+       // Add button to imageIcon
+        imageLabel.add(tryAgainButton);
+        imageLabel.add(exitButton);
 
         // this.add(tryAgainButton);
         // this.add(exitButton);
         
 
 
-
         this.setLayout(new FlowLayout());
         this.setTitle("Snake Game");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(1100,700);
+        this.setSize(1100,650);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         // set background color of frame
