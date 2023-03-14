@@ -2,8 +2,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.awt.Font;
 
 
 import java.awt.Color;
@@ -18,31 +20,27 @@ public class PlayerMenu extends JFrame {
         //JLabel
 
         JLabel png= new JLabel();
-        ImageIcon icon= new ImageIcon("500 (3).png");
+        ImageIcon icon= new ImageIcon("playermenu.gif");
         png.setIcon(icon);
         png.setOpaque(true);
-        
         this.add(png);
-        this.setResizable(false);
-        
-        JLabel label= new JLabel() ;
-        label.setText("Enter Player Name:  ");
-        label.setFont(new Font("Arial", Font.BOLD,30));
-
+            
         //JTextField
         textField= new JTextField(20);
-        //Add event to textField
+        textField.setBounds(340, 433, 420, 50); 
+        textField.setFont (new Font ("Courier New", Font.BOLD, 18));
+        textField.setBackground(new Color(205,222,224));
+        textField.setBorder(null);
         EventHandler handler= new EventHandler();
         textField.addKeyListener(handler);
         
-        //Add components to frame
-        this.add(label);
-        this.add(textField);
+        
+        png.add(textField);
 
          //Close java program when using window
          this.setDefaultCloseOperation(EXIT_ON_CLOSE);
          //Dimension of frame
-         this.setSize(1100,600);
+         this.setSize(1100,650);
          //Makes frame appear on screen
          this.setVisible(true);
          //Set fram to center
@@ -50,7 +48,8 @@ public class PlayerMenu extends JFrame {
          //Set background color of frame
          this.getContentPane().setBackground(new Color(237,241,214));
          //this.getContentPane().setBackground(Color.BLACK);
- 
+         this.setResizable(false);
+
  
        
     }
