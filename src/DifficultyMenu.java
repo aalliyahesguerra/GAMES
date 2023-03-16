@@ -1,12 +1,21 @@
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
+
 public class DifficultyMenu extends JFrame {
+    JButton soundButton;
+    String clickSound;
+    ButtonHandler bHandler = new ButtonHandler();
+    soundEffect se = new soundEffect();
 
     DifficultyMenu() {
         super("Snake Game");
@@ -14,6 +23,8 @@ public class DifficultyMenu extends JFrame {
         ImageIcon snakeImage= new ImageIcon("try.gif");
         imageLabel.setIcon(snakeImage);
         this.add(imageLabel);
+        RunStartSe("wavbutton.wav");
+
 
         JButton easyButton = new JButton();
         ImageIcon easyB = new ImageIcon("easy.png");
@@ -22,7 +33,7 @@ public class DifficultyMenu extends JFrame {
         //1-left right 2-north south 3-width 4-height
         EventHandler easyHandler = new EventHandler(200);
         easyButton.addActionListener(easyHandler);
-       
+        easyButton.addActionListener(bHandler);
 
         JButton normalButton = new JButton();
         ImageIcon medB = new ImageIcon ("normal.png");
@@ -30,7 +41,7 @@ public class DifficultyMenu extends JFrame {
         normalButton.setBounds(430, 250, 230, 49 );
         EventHandler normalHandler = new EventHandler(100);
         normalButton.addActionListener(normalHandler);
-
+        normalButton.addActionListener(bHandler);
 
         JButton hardButton = new JButton();
         ImageIcon hardB = new ImageIcon("hard.png");
@@ -38,6 +49,7 @@ public class DifficultyMenu extends JFrame {
         hardButton.setBounds(430, 330, 230, 49);
         EventHandler hardHandler = new EventHandler(50);
         hardButton.addActionListener(hardHandler);
+        hardButton.addActionListener(bHandler);
 
         JButton expertButton= new JButton();
         ImageIcon expertB = new ImageIcon("expert.png");
@@ -45,7 +57,7 @@ public class DifficultyMenu extends JFrame {
         expertButton.setBounds(430, 410, 230, 49);
         EventHandler handler3 = new EventHandler(40);
         expertButton.addActionListener(handler3);
-        
+        expertButton.addActionListener(bHandler);
         
 
         JButton godmodeButton= new JButton();
@@ -55,7 +67,8 @@ public class DifficultyMenu extends JFrame {
 
         EventHandler handler4= new EventHandler(10);
         godmodeButton.addActionListener(handler4);
-        
+        godmodeButton.addActionListener(bHandler);
+
         imageLabel.add(easyButton);
         imageLabel.add(normalButton);
         imageLabel.add(hardButton);
@@ -72,6 +85,8 @@ public class DifficultyMenu extends JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
+        clickSound = ".//res//wavbutton.wav";
+
     }
 
     private class EventHandler implements ActionListener {
@@ -87,8 +102,51 @@ public class DifficultyMenu extends JFrame {
             gp.DELAY = snakeSpeed;
         
             new ColorMenu();
+            dispose();
 
 
+        }
+    }
+
+    public class soundEffect{
+        Clip clip;
+        
+        public void setFile(String soundFileName){
+            try{
+                File file = new File(soundFileName);
+                AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+                clip = AudioSystem.getClip();
+                clip.open(sound);
+                
+            }
+            catch(Exception e){
+
+            }
+        }
+        public void play(){
+            clip.setFramePosition(0);
+            clip.start();
+        }
+    }
+
+    public class ButtonHandler implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            se.setFile(clickSound);
+            se.play();
+
+        }
+    }
+
+    public static void RunStartSe(String path){
+        try {
+            AudioInputStream audioInputStream= AudioSystem.getAudioInputStream(new File("wavbutton.wav"));
+            Clip clip= AudioSystem.getClip();
+            clip.open(audioInputStream);
+            
+            clip.start();
+            // clip.stop();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
