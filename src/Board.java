@@ -14,10 +14,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+
 public class Board extends JPanel implements ActionListener{
     
-    private final int B_WIDTH = 1100;
-    private final int B_HEIGHT = 650;
+    public final int B_WIDTH = 1100;
+    public final int B_HEIGHT = 650;
     private final int DOT_SIZE = 30;
     private final int ALL_DOTS = 900;
     private final int RAND_POS = 19;
@@ -28,7 +29,7 @@ public class Board extends JPanel implements ActionListener{
     // Game difficulty
     static int DELAY;
 
-    int applesEaten;
+    public static int applesEaten;
     static String playerName;
 
     private final int x[] = new int[ALL_DOTS];
@@ -49,12 +50,13 @@ public class Board extends JPanel implements ActionListener{
     private Image apple;
     private Image head;
 
-    int highestScore;
-    int foodsEaten;
+    static int highestScore;
+    static int foodsEaten;
 
     public Board() {
-        
+                
         initBoard();
+
     }
     
     private void initBoard() {
@@ -67,16 +69,28 @@ public class Board extends JPanel implements ActionListener{
         loadImages();
         initGame();
     }
+    // public static void PlayGameSong(String path){
+    //     try {
+    //         AudioInputStream audioInputStream= AudioSystem.getAudioInputStream(new File("wavgamesong.wav"));
+    //         Clip clip= AudioSystem.getClip();
+    //         clip.open(audioInputStream);
+    //         clip.loop(Clip.LOOP_CONTINUOUSLY);
+    //         clip.start();
+    //      //   clip.stop();
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 
     private void loadImages() {
 
-        ImageIcon iid = new ImageIcon("dot.png");
+        ImageIcon iid = new ImageIcon("round1.png");
         ball = iid.getImage();
 
         ImageIcon iia = new ImageIcon("apple.png");
         apple = iia.getImage();
 
-        ImageIcon iih = new ImageIcon("head.png");
+        ImageIcon iih = new ImageIcon("head1.png");
         head = iih.getImage();
     }
 
@@ -102,25 +116,11 @@ public class Board extends JPanel implements ActionListener{
         doDrawing(g);
     }
     
-    private void doDrawing(Graphics g) {
+    public void doDrawing(Graphics g) {
         
-        if (inGame) {
-             
-            g.clearRect(0, 0, B_WIDTH, B_HEIGHT);
-            g.setColor(gameBGColor);
-            g.fillRect(0, 0, B_WIDTH, B_HEIGHT);
-
+        if (inGame){
             g.drawImage(apple, apple_x, apple_y, this);
             
-            // Grid
-            g.setColor(Color.white);
-            for (int i = 0; i < B_WIDTH / 30; i++) {
-             g.drawLine(i * 30, 60, i * 30, B_HEIGHT);
-        }
-            for (int i = 2; i < 780 / 25; i ++) {
-             g.drawLine(0, i * 30, B_WIDTH, i * 30 );
-        }
-
             for (int z = 0; z < dots; z++) {
                 if (z == 0) {
                     g.drawImage(head, x[z], y[z], this);
@@ -132,8 +132,8 @@ public class Board extends JPanel implements ActionListener{
             Toolkit.getDefaultToolkit().sync();
 
             // Score
-            g.setColor(Color.red);
-            g.setFont(new Font("Ink Free", Font.BOLD, 40));
+            g.setColor(new Color(237,241,214));
+            g.setFont(new Font("Cambria", Font.BOLD, 40));
             FontMetrics metrics = getFontMetrics(g.getFont());
 
             g.drawString("Score: " + applesEaten, (B_WIDTH - metrics.stringWidth("Score: " + B_HEIGHT)) / 2,
@@ -142,49 +142,46 @@ public class Board extends JPanel implements ActionListener{
             g.drawString("Player: " + playerName, 0,
                     g.getFont().getSize());
 
+                   
                     
 
         } else {
+            new TryAgain ();
 
-            gameOver(g);
+           // gameOver(g);
         }        
     }
 
-    private void gameOver(Graphics g) {
-        //highest score
-        if (foodsEaten >= highestScore) {
-            highestScore = foodsEaten;
-        }
+    // public void gameOver(Graphics g) {
+    //     //highest score
+    //     if (foodsEaten >= highestScore) {
+    //         highestScore = foodsEaten;
+    //     }
 
-        String hs = "Highest Score: ";
-
-        Font hsf = new Font("Game Over Regular", Font.PLAIN, 100);
-        FontMetrics metr1 = getFontMetrics(hsf);
-
-        g.setColor(Color.red);
-        g.setFont(new Font("Ink Free", Font.BOLD, 40));
-        FontMetrics metrics = getFontMetrics(g.getFont());
-
-        g.drawString("Score: " + applesEaten, (B_WIDTH - metrics.stringWidth("Score: " + B_HEIGHT)) / 2,
-                g.getFont().getSize());
-
-        String msg = "VOVO KA BEH ULIT SNAKE NALANG YAN";
-        Font small = new Font("Cooper Black", Font.BOLD, 44);
-        FontMetrics metr = getFontMetrics(small);
+    //     String hs = "Highest Score: ";
         
 
-        g.setColor(Color.pink);
-        g.setFont(small);
-        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 3);
+    //     Font hsf = new Font("Arial", Font.PLAIN, 100);
+    //     FontMetrics metr1 = getFontMetrics(hsf);
         
 
-        JFrame parentFrame = (JFrame) this.getTopLevelAncestor();
+    //     g.setColor(Color.red);
+    //     g.setFont(new Font("Arial", Font.BOLD, 40));
+    //     FontMetrics metrics = getFontMetrics(g.getFont());
+
+    //     g.drawString("Score: " + applesEaten, (B_WIDTH - metrics.stringWidth("Score: " + B_HEIGHT)) / 2,
+    //             g.getFont().getSize());
+    //     g.drawString(hs + highestScore, metr1.stringWidth(hs)+100, 700);
+
+
+    //     JFrame parentFrame = (JFrame) this.getTopLevelAncestor();
+    //     g.drawString("Score: " + applesEaten, (B_WIDTH - metrics.stringWidth("Score: " + B_HEIGHT)) / 2,
+    //             g.getFont().getSize());
+    //     g.drawString(hs + highestScore, metr1.stringWidth(hs)+100, 700);
+    //     parentFrame.dispose();
+    //     // Open Try again frame
         
-        parentFrame.dispose();
-        // Open Try again frame
-        new TryAgain();
-        
-    }
+   // }
 
     private void checkApple() {
 
@@ -226,6 +223,7 @@ public class Board extends JPanel implements ActionListener{
 
             if ((z > 3) && (x[0] == x[z]) && (y[0] == y[z])) {
                 inGame = false;
+
             }
         }
 
@@ -248,15 +246,17 @@ public class Board extends JPanel implements ActionListener{
         if (!inGame) {
             timer.stop();
         }
+
     }
 
-    private void locateApple() {
+    
+        private void locateApple() {
 
-        int r = (int)(Math.random() * 40) + 0;
-        apple_x = ((r * 30));
-
-        r = (int)(Math.random() * 26) + 0;
-        apple_y = ((r * 30) + 60);
+            int r = (int)(Math.random() * 30) + 0;
+            apple_x = ((r * 30));
+    
+            r = (int)(Math.random() * 15) + 0;
+            apple_y = ((r * 30) + 60);
     }
 
     @Override
@@ -303,5 +303,9 @@ public class Board extends JPanel implements ActionListener{
                 leftDirection = false;
             }
         }
+        
     }
+
+
+
 }
