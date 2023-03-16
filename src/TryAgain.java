@@ -28,6 +28,15 @@ public class TryAgain extends JFrame {
         imageLabel.setIcon(gameOverIcon);
         this.add(imageLabel);
 
+        // Board scoreBoard = new Board();
+        // if (Board.applesEaten >= Board.highestScore) {
+        //     Board.highestScore = Board.applesEaten;
+        // }
+
+        // JLabel scoreLabel = new JLabel();
+        // scoreLabel.setText("HIGHEST SCORE:"+ Board.highestScore);
+        // scoreLabel.setBounds(425, 330, 260, 57);
+        // imageLabel.add(scoreLabel);
 
         JButton tryAgainButton = new JButton();
         ImageIcon tryAgainB = new ImageIcon("tryagain.png");
@@ -65,7 +74,7 @@ public class TryAgain extends JFrame {
         public void actionPerformed(ActionEvent event) {
             
             // open game frame
-            new GameFrame();
+            new DifficultyMenu();
             // Close main menu frame
             dispose();
         }
@@ -78,6 +87,7 @@ public class TryAgain extends JFrame {
                 dispose();
     }
 }
+
 public static void GameOverSe(String path){
     try {
         AudioInputStream audioInputStream= AudioSystem.getAudioInputStream(new File("wavgameover.wav"));
