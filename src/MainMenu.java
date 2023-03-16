@@ -8,10 +8,16 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+
 public class MainMenu extends JFrame {
-   
 
     MainMenu(){
+        PlayGameSong("wavgamesong.wav");
         
         JLabel imageLabel= new JLabel();
         ImageIcon snakeImage= new ImageIcon("snake.gif");
@@ -48,5 +54,19 @@ public class MainMenu extends JFrame {
             // Close main menu frame
             dispose();
         }
+}
+
+public static void PlayGameSong(String path){
+    try {
+        AudioInputStream audioInputStream= AudioSystem.getAudioInputStream(new File("wavgamesong.wav"));
+        Clip clip= AudioSystem.getClip();
+        clip.open(audioInputStream);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        clip.start();
+        
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 }
 }
