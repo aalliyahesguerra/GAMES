@@ -22,14 +22,14 @@ public class MainMenu extends JFrame {
         
         
         JLabel imageLabel= new JLabel();
-        ImageIcon snakeImage= new ImageIcon("snake.gif");
+        ImageIcon snakeImage= new ImageIcon("snakefinal.gif");
         imageLabel.setIcon(snakeImage);
         this.add(imageLabel);
 
         JButton startButton = new JButton();
         ImageIcon startImageIcon = new ImageIcon("startgame.png");
         startButton.setIcon(startImageIcon);
-        startButton.setBounds(430, 480, 248, 51);
+        startButton.setBounds(430, 460, 248, 51);
         //2,north south 3,width 4,height
         imageLabel.add(startButton);
         
