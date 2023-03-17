@@ -35,22 +35,22 @@ public class TryAgain extends JFrame {
 
         JLabel scoreLabel = new JLabel();
         scoreLabel.setText("" + Board.applesEaten);
-        scoreLabel.setBounds(540, 340, 260, 57);
-        scoreLabel.setFont(new Font("Courier New", Font.BOLD, 30));
+        scoreLabel.setBounds(540, 335, 260, 57);
+        scoreLabel.setFont(new Font("Cambria", Font.BOLD, 30));
         scoreLabel.setForeground(Color.WHITE);
         imageLabel.add(scoreLabel);
 
         JLabel highestScoreLabel = new JLabel();
         highestScoreLabel.setText(""+ Board.highestScore);
         highestScoreLabel.setBounds(538, 420, 260, 57);
-        highestScoreLabel.setFont(new Font("Courier New", Font.BOLD, 40));
+        highestScoreLabel.setFont(new Font("Cambria", Font.BOLD, 40));
         highestScoreLabel.setForeground(Color.WHITE);
         imageLabel.add(highestScoreLabel);
 
         JLabel Player = new JLabel();
         Player.setText("" + Board.playerName);
         Player.setBounds(520, 262, 260, 57);
-        Player.setFont(new Font("Courier New", Font.BOLD, 30));
+        Player.setFont(new Font("Cambria", Font.BOLD, 30));
         Player.setForeground(Color.WHITE);
         imageLabel.add(Player);
 
