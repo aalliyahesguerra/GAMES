@@ -20,7 +20,7 @@ public class PlayerMenu extends JFrame {
         //JLabel
 
         JLabel png= new JLabel();
-        ImageIcon icon= new ImageIcon("playermenu.gif");
+        ImageIcon icon= new ImageIcon("playermenufinal.gif");
         png.setIcon(icon);
         png.setOpaque(true);
         this.add(png);
